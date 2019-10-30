@@ -59,7 +59,7 @@ theMenu.classList.add('menu');
   })
   
   //Step 5: return the menu component.
-  //add event
+  //add event handlers
   menuButton.addEventListener('click', () => {
     theMenu.classList.toggle('menu--open');
     console.log("I have been clicked")
