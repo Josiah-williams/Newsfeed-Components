@@ -34,13 +34,14 @@ let menuItems = [
   
 */
 
-const heading = document.querySelector('.header');
-const menuButton = document.querySelector('.menuButton');
 
 
 function menuCreator(array){
   const theMenu = document.createElement('div');
   const menuList = document.createElement('ul');
+  const heading = document.querySelector('.header');
+  const menuButton = document.querySelector('.menu-button')
+ 
 
 
 //Setup structure of elements
@@ -53,13 +54,16 @@ theMenu.classList.add('menu');
 
 //set text content
   array.forEach(item => {
-    let listItem = document.createElement('li');
+    const listItem = document.createElement('li');
     listItem.textContent = item;
     menuList.appendChild(listItem);
   })
   
+
   //Step 5: return the menu component.
   //add event handlers
+  
+  theMenu.classList.add('menu');
   menuButton.addEventListener('click', () => {
     theMenu.classList.toggle('menu--open');
     console.log("I have been clicked")
@@ -67,7 +71,10 @@ theMenu.classList.add('menu');
 
   return theMenu
 }
+const heading = document.querySelector('.header');
+const menuButton = document.querySelector('.menuButton')
 
 menuItems.forEach(item => {
-  header.appendChild(menuCreator(menuItems));
+  heading.appendChild(menuCreator(menuItems));
 })
+
