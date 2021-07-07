@@ -85,8 +85,23 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+{
+    title: 'josiah Is Cool',
+    date:'october 10, 2019',
+    firstParagraph: `Scooby Dooby Doo. Scooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby 
+    DooScooby Dooby DooScooby Dooby Doo. Scooby Dooby Doo. Scooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby DooScooby Dooby 
+    DooScooby Dooby DooScooby Dooby Doo. `,
+
+    secondParagraph: `Button, Button. Who has the button? Button, Button. Who has the button? Button, Button. Who has the button? Button, Button. Who has the button? Button, Button. Who has the button?
+    Button, Button. Who has the button? Button, Button. Who has the button? Button, Button. Who has the button? Button, Button. Who has the button? Button, Button. Who has the button?`,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -112,3 +127,59 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+//step 1
+const articles = document.querySelector('.articles');
+
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const articleCard = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const button = document.createElement('span');
+
+ //Setup structure of elements
+  articleCard.appendChild(articleTitle);
+  articleCard.appendChild(articleDate);
+  articleCard.appendChild(para1);
+  articleCard.appendChild(para2);
+  articleCard.appendChild(para3);
+  articleCard.appendChild(button);
+
+  // set class names
+  articleCard.classList.add('article');
+  articleDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  //set text content
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  button.textContent = 'Read More'
+  
+  //step 2
+  button.addEventListener('click', e => {
+    articleCard.classList.toggle('article-open');
+    articleCard.classList.toggle('close');
+      // button.classList.toggle('article');
+    })
+  
+    //step 3
+    return articleCard;
+  };
+
+//step 4
+  let newArticleComponents = data.map((arrayItem) => {
+    let newArticle = createArticle(arrayItem.title, arrayItem.date, arrayItem.firstParagraph, arrayItem.secondParagraph, arrayItem.thirdParagraph);
+  
+    return newArticle;
+  })
+  
+  //step 5
+  newArticleComponents.forEach(component => {
+    articles.appendChild(component);
+  })
